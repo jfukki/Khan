@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Khan's App</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/angular.js"></script>
+    <script src="js/angularfire.min.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <div class="panel panel-primary" ng-controller='productCtrl'>
+        <div class="panel-heading" style="font-size:large;">
+        <h2>Mehmood Khan</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+          <form action="" ng-submit="addFormSubmit()" ng-show="addFormShow" class="form-group" id="up">
+          
+            <input type="text" placeholder="Title" ng-model="title" class="form-control">
+            <br>
+            <textarea name="" id="" cols="30" rows="6" placeholder="Description" ng-model="des"  class="form-control"></textarea><br>
+            <textarea name="" id="" cols="20" rows="4" placeholder="References" ng-model="ref"  class="form-control"></textarea><br>
+            <textarea name="" id="" cols="3" rows="1" placeholder="Link1" ng-model="link1"  class="form-control"></textarea><br>
+            <textarea name="" id="" cols="3" rows="1" placeholder="Link2" ng-model="link2"  class="form-control"></textarea>
+            
+            <br>
+            <input type="submit" value="Add To List" class="btn btn-default btn-success" class="form-control">
+         </form>          
+                </div>
+            <div class="col-md-6">
+                <div class="panel panel-info"  ng-show="addFormShow" id="up"> 
+                    <div class="panel-heading">
+                        <h3>{{title}}</h3>
+                    </div>
+                    <div class="panel-body " style="background-color:rgba(7, 47, 75, 0.7);color:#e5dbdb;font-size:20px;font-weight:200;">
+                        <p>{{des}}</p>
+                        <span style="float:right;">{{ref}}</span>
+                    </div>
+                    <div class="panel-footer">
+                        <h4>{{link1}}</h4>
+                        <h4>{{link2}}</h4>
+                    </div>
+                </div>
+            </div>
+               
+            </div>
+        </div>
+          
+        <!-------------------------------------------------------------------- -->   
+     
+        <!-- Edit form and show all the records on another page -->
+        <!--- Edit Form -->
+        
+        <form action="" ng-submit="editFormSubmit()" ng-show="editFormShow">
+            <input type="text" placeholder="Title" ng-model="title">
+            <input type="text" placeholder="Description" ng-model="des">
+            <input type="text" placeholder="References" ng-model="ref">
+            <input type="text" placeholder="Link1" ng-model="link1">
+            <input type="text" placeholder="Link2" ng-model="link2">
+            <input type="submit" value="Update" class="btn btn-default btn-info">
+        </form>
+        
+        
+        <!-- end of edit form -->
+        
+        
+        <div class="panel panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td><strong>Description</strong></td>
+                        <td><strong>References</strong></td>
+                        <td><strong>Link1</strong></td>
+                        <td><strong>Link2</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products">
+                        <td>{{product.title}}</td>
+                        <td>{{product.des}}</td>
+                        <td>{{product.ref}}</td>
+                        <td>{{product.link1}}</td>
+                        <td>{{product.link2}}</td>
+                        <td>
+                                <button class="btn btn-primary" ng-click="showProduct(product)">Edit</button>
+                                <button class="btn btn-danger" ng-click="deleteProduct(product)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success" ng-click="showForm()" ng-hide="addFormShow">+</button>
+            <button class="btn btn-warning" ng-click="hideForm()" ng-show="addFormShow">-</button>
+        </div>
+         
+    </div>    
+    
+    
+    
+    
+</body>
+</html>
